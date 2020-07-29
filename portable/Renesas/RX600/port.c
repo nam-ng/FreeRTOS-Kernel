@@ -37,6 +37,7 @@
 #include "string.h"
 
 /* Hardware specifics. */
+//TODO: modify to support platform.h
 #include "iodefine.h"
 
 /*-----------------------------------------------------------*/
