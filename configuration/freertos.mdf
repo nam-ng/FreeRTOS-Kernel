@@ -29,11 +29,11 @@ Disable: omit an idle hook.</description>
 Disable: omit a tick hook.</description>
         </property>
         <property id="configCPU_CLOCK_HZ" display="The frequency of the CPU clock" default="BSP_ICLK_HZ" type="textbox">
-            <constraint display="default disable" actionOnFail="disable">("${configCPU_CLOCK_HZ}" == BSP_ICLK_HZ)</constraint>
+            <constraint display="always disable" actionOnFail="disable">1 == 0</constraint>
             <description>Enter the frequency in Hz at which the internal clock that driver the peripheral used to generate the tick interrupt will be executing - this is normally the same clock that drives the internal CPU clock. This value is required in order to correctly configure timer peripherals.</description>
         </property>
         <property id="configPERIPHERAL_CLOCK_HZ" display="The frequency of the PERIPHERAL clock" default="BSP_PCLKB_HZ" type="textbox">
-            <constraint display="default disable" actionOnFail="disable">("${configPERIPHERAL_CLOCK_HZ}" == BSP_PCLK_HZ)</constraint>
+            <constraint display="always disable" actionOnFail="disable">1 == 0</constraint>
             <description>Enter the frequency of the PERIPHERAL clock.</description>
         </property>
         <property id="configTICK_RATE_HZ" display="The frequency of the RTOS tick interrupt" default="( TickType_t ) 1000" type="textbox">
@@ -52,7 +52,7 @@ The stack size is specified in words, not bytes.</description>
 ( size_t ) ( configTOTAL_HEAP_SIZE_N * 1024 ) </description>
         </property>
         <property id="configTOTAL_HEAP_SIZE" display="The total amount of RAM available in the FreeRTOS heap" default="( size_t ) ( configTOTAL_HEAP_SIZE_N * 1024 )" type="textbox">
-            <constraint display="default disable" actionOnFail="disable">("${configTOTAL_HEAP_SIZE}" == ( size_t ) ( configTOTAL_HEAP_SIZE_N * 1024 ))</constraint>
+            <constraint display="always disable" actionOnFail="disable">1 == 0</constraint>
             <description>This value will only be used if configSUPPORT_DYNAMIC_ALLOCATION is set to 1 and the application makes use of one of the sample memory allocation schemes provided in the FreeRTOS source code download.</description>
         </property>
         <property id="configMAX_TASK_NAME_LEN" display="The maximum permissible length of name" default="12" type="textbox">
@@ -180,7 +180,7 @@ Disable: omit software timer functionality.</description>
             <description>Sets the length of the software timer command queue. See the FreeRTOS software timers page for a full description. </description>
         </property>
         <property id="configTIMER_TASK_STACK_DEPTH" display="The stack depth allocated to the software timer task" default="configMINIMAL_STACK_SIZE" type="textbox">
-            <constraint display="default disable" actionOnFail="disable">("${configTIMER_TASK_STACK_DEPTH}" == configMINIMAL_STACK_SIZE) </constraint>
+            <constraint display="always disable" actionOnFail="disable">1 == 0</constraint>
             <description>Sets the stack depth allocated to the software timer service/daemon task. See the FreeRTOS software timers page for a full description. </description>
         </property>
         <property id="configKERNEL_INTERRUPT_PRIORITY" display="Kernel interrupt priority" default="1" type="textbox">
@@ -190,7 +190,7 @@ Disable: omit software timer functionality.</description>
         </property>
         <property id="configMAX_SYSCALL_INTERRUPT_PRIORITY" display="Maximum syscall interrupt priority" default="4" type="textbox">
             <constraint display="Value must be an integer">testInteger("${configMAX_SYSCALL_INTERRUPT_PRIORITY}")</constraint>
-            <constraint display="Value must be in range configKERNEL_INTERRUPT_PRIORITY + 1 ~ configMAX_PRIORITIES - 1">("${configMAX_SYSCALL_INTERRUPT_PRIORITY}" &gt;= ${configKERNEL_INTERRUPT_PRIORITY} + 1) &amp;&amp; ("${configMAX_SYSCALL_INTERRUPT_PRIORITY}" &lt;= ${configMAX_PRIORITIES} - 1)</constraint>
+            <constraint display="Value must be in range configKERNEL_INTERRUPT_PRIORITY + 1 ~ configMAX_PRIORITIES - 1">("${configMAX_SYSCALL_INTERRUPT_PRIORITY}" &gt;= "${configKERNEL_INTERRUPT_PRIORITY}" + 1) &amp;&amp; ("${configMAX_SYSCALL_INTERRUPT_PRIORITY}" &lt;= "${configMAX_PRIORITIES}" - 1)</constraint>
             <description>The maximum interrupt priority from which FreeRTOS API calls can be made.
 Interrupts that use a priority above this will not be effected by anything the kernel is doing.</description>
         </property>
@@ -270,17 +270,17 @@ Disable: exclude the eTaskGetState() from your build</description>
 Disable: exclude the xTimerPendFunctionCall() from your build</description>
         </property>
         <property id="bktPRIMARY_PRIORITY" display="bktPRIMARY_PRIORITY" default="( configMAX_PRIORITIES - 3 )" type="textbox">
-            <constraint display="default disable" actionOnFail="disable">("${bktPRIMARY_PRIORITY}" == ( configMAX_PRIORITIES - 3 ))</constraint>
+            <constraint display="always disable" actionOnFail="disable">1 == 0</constraint>
             <description>Override some of the priorities set in the common demo tasks. 
 This is required to ensure flase positive timing errors are not reported.</description>
         </property>
         <property id="bktSECONDARY_PRIORITY" display="bktSECONDARY_PRIORITY" default="( configMAX_PRIORITIES - 4 )" type="textbox">
-            <constraint display="default disable" actionOnFail="disable">("${bktSECONDARY_PRIORITY}" == ( configMAX_PRIORITIES - 4 ))</constraint>
+            <constraint display="always disable" actionOnFail="disable">1 == 0</constraint>
             <description>Override some of the priorities set in the common demo tasks. 
 This is required to ensure flase positive timing errors are not reported.</description>
         </property>
         <property id="intqHIGHER_PRIORITY" display="intqHIGHER_PRIORITY" default="( configMAX_PRIORITIES - 3 )" type="textbox">
-            <constraint display="default disable" actionOnFail="disable">("${intqHIGHER_PRIORITY}" == ( configMAX_PRIORITIES - 3 ))</constraint>
+            <constraint display="always disable" actionOnFail="disable">1 == 0</constraint>
             <description>Override some of the priorities set in the common demo tasks. 
 This is required to ensure flase positive timing errors are not reported.</description>
         </property>
